@@ -40,29 +40,29 @@ export default function SettingsScreen() {
     { symbol: "₸", name: "KZT" },
   ];
 
-  const toggleAutoClean = async (enabled: boolean) => {
-    try {
-      await ReceiptStorage.saveAutoCleanSettings({
-        enabled,
-        days: state.autoCleanDays,
-      });
-      dispatch({ type: "TOGGLE_AUTO_CLEAN", payload: enabled });
-    } catch (error) {
-      Alert.alert("Error", "Failed to update auto-clean settings");
-    }
-  };
+  // const toggleAutoClean = async (enabled: boolean) => {
+  //   try {
+  //     await ReceiptStorage.saveAutoCleanSettings({
+  //       enabled,
+  //       days: state.autoCleanDays,
+  //     });
+  //     dispatch({ type: "TOGGLE_AUTO_CLEAN", payload: enabled });
+  //   } catch (error) {
+  //     Alert.alert("Error", "Failed to update auto-clean settings");
+  //   }
+  // };
 
-  const setAutoCleanDays = async (days: number) => {
-    try {
-      await ReceiptStorage.saveAutoCleanSettings({
-        enabled: state.autoCleanEnabled,
-        days,
-      });
-      dispatch({ type: "SET_AUTO_CLEAN_DAYS", payload: days });
-    } catch (error) {
-      Alert.alert("Error", "Failed to update auto-clean days");
-    }
-  };
+  // const setAutoCleanDays = async (days: number) => {
+  //   try {
+  //     await ReceiptStorage.saveAutoCleanSettings({
+  //       enabled: state.autoCleanEnabled,
+  //       days,
+  //     });
+  //     dispatch({ type: "SET_AUTO_CLEAN_DAYS", payload: days });
+  //   } catch (error) {
+  //     Alert.alert("Error", "Failed to update auto-clean days");
+  //   }
+  // };
 
   const setCurrency = async (currency: string) => {
     try {
@@ -73,47 +73,47 @@ export default function SettingsScreen() {
     }
   };
 
-  const runAutoClean = async () => {
-    try {
-      const result = await ReceiptStorage.cleanOldReceipts();
-      if (result.deletedCount > 0) {
-        Alert.alert(
-          "Auto-Clean Complete",
-          `Deleted ${result.deletedCount} old receipt(s) and ${result.totalDeleted} associated image(s).`
-        );
-        // Refresh receipts list
-        const updatedReceipts = await ReceiptStorage.getAllReceipts();
-        dispatch({ type: "SET_RECEIPTS", payload: updatedReceipts });
-      } else {
-        Alert.alert("Auto-Clean", "No old receipts found to delete.");
-      }
-    } catch (error) {
-      Alert.alert("Error", "Failed to run auto-clean");
-    }
-  };
+  // const runAutoClean = async () => {
+  //   try {
+  //     const result = await ReceiptStorage.cleanOldReceipts();
+  //     if (result.deletedCount > 0) {
+  //       Alert.alert(
+  //         "Auto-Clean Complete",
+  //         `Deleted ${result.deletedCount} old receipt(s) and ${result.totalDeleted} associated image(s).`
+  //       );
+  //       // Refresh receipts list
+  //       const updatedReceipts = await ReceiptStorage.getAllReceipts();
+  //       dispatch({ type: "SET_RECEIPTS", payload: updatedReceipts });
+  //     } else {
+  //       Alert.alert("Auto-Clean", "No old receipts found to delete.");
+  //     }
+  //   } catch (error) {
+  //     Alert.alert("Error", "Failed to run auto-clean");
+  //   }
+  // };
 
-  const exportData = async () => {
-    try {
-      const data = await ReceiptStorage.exportData();
-      const dataString = JSON.stringify(data, null, 2);
+  // const exportData = async () => {
+  //   try {
+  //     const data = await ReceiptStorage.exportData();
+  //     const dataString = JSON.stringify(data, null, 2);
 
-      const fileUri = `${FileSystem.documentDirectory}scanvault_export_${
-        new Date().toISOString().split("T")[0]
-      }.json`;
-      await FileSystem.writeAsStringAsync(fileUri, dataString);
+  //     const fileUri = `${FileSystem.documentDirectory}scanvault_export_${
+  //       new Date().toISOString().split("T")[0]
+  //     }.json`;
+  //     await FileSystem.writeAsStringAsync(fileUri, dataString);
 
-      if (await Sharing.isAvailableAsync()) {
-        await Sharing.shareAsync(fileUri, {
-          mimeType: "application/json",
-          dialogTitle: "Export ScanVault Data",
-        });
-      } else {
-        Alert.alert("Export", "Sharing not available on this device");
-      }
-    } catch (error) {
-      Alert.alert("Error", "Failed to export data");
-    }
-  };
+  //     if (await Sharing.isAvailableAsync()) {
+  //       await Sharing.shareAsync(fileUri, {
+  //         mimeType: "application/json",
+  //         dialogTitle: "Export ScanVault Data",
+  //       });
+  //     } else {
+  //       Alert.alert("Export", "Sharing not available on this device");
+  //     }
+  //   } catch (error) {
+  //     Alert.alert("Error", "Failed to export data");
+  //   }
+  // };
 
   const exportDataAsCSV = async () => {
     try {
