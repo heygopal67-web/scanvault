@@ -3,7 +3,6 @@ import { router } from "expo-router";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
-  Dimensions,
   Modal,
   Pressable,
   RefreshControl,
@@ -30,7 +29,6 @@ import {
   getRecentReceipts,
 } from "../utils/helpers";
 
-const { width: screenWidth } = Dimensions.get("window");
 
 export default function HomeScreen() {
   const { state, loadReceipts } = useApp();
@@ -168,7 +166,7 @@ export default function HomeScreen() {
       >
         <AnimatedFadeIn duration={800}>
           <ActivityIndicator size="large" color={Colors.light.primary} />
-          <Text style={[tw`mt-4 text-lg`, { color: Colors.light.text }]}>
+          <Text style={[tw`mt-5 text-lg`, { color: Colors.light.text }]}>
             Loading your receipts...
           </Text>
         </AnimatedFadeIn>
