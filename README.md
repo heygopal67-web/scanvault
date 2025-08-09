@@ -1,6 +1,5 @@
 # ScanVault - Pocket Receipts Organizer
-
-A comprehensive receipts organizing and tracking app..
+The easiest way to store, track, and manage all your receipts—right in your pocket.
 
 ## Features
 
