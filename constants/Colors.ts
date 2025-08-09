@@ -1,11 +1,3 @@
-/**
- * Enhanced color palette for the app theme
- *
- * Dark Teal: #007380 - Primary brand color for headers, buttons, and key highlights
- * Light Teal: #21BBBB - Secondary actions, icons, and accent backgrounds
- * Cream: #FFFEDB - Base background color for screens and cards
- * Enhanced with better contrast and accessibility
- */
 
 // Enhanced color palette
 const darkTeal = "#5C4B51"; // Warm plum-gray

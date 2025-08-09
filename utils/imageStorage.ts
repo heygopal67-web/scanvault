@@ -29,7 +29,6 @@ export const cleanupOldImages = async (): Promise<void> => {
     const keys = await AsyncStorage.getAllKeys();
     const imageKeys = keys.filter(key => key.startsWith('receipt_image_'));
     
-    // You can implement cleanup logic here if needed
     console.log(`Found ${imageKeys.length} stored images`);
   } catch (error) {
     console.error('Error cleaning up images:', error);
